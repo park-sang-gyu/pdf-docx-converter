@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR 결과 검수</title>
+    <style>
+        body { font-family: Arial; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .review-panel { display: flex; gap: 20px; height: 80vh; }
+        .image-panel, .text-panel { flex: 1; background: white; border-radius: 10px; padding: 20px; overflow: auto; }
+        .image-panel img { max-width: 100%; height: auto; border: 1px solid #ddd; }
+        .text-block { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .text-block.table { background: #e3f2fd; }
+        .text-block.text { background: #f3e5f5; }
+        .confidence { font-size: 12px; color: #666; }
+        .edit-btn { background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; }
+        .save-btn { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px; }
+        .stats { background: #fff3cd; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 OCR 결과 검수</h1>
+            <div class="stats" id="stats">
+                <strong>추출 통계:</strong> 총 <span id="totalBlocks">0</span>개 블록 
+                (표: <span id="tableBlocks">0</span>개, 본문: <span id="textBlocks">0</span>개)
+                평균 신뢰도: <span id="avgConfidence">0</span>%
+            </div>
+        </div>
+        
+        <div class="review-panel">
+            <div class="image-panel">
+                <h3>📷 원본 이미지</h3>
+                <img id="originalImage" src="" alt="원본 이미지">
+            </div>
+            
+            <div class="text-panel">
+                <h3>📝 추출된 텍스트</h3>
+                <div id="textBlocks"></div>
+                <button class="save-btn" onclick="saveReview()">💾 검수 완료</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let extractedData = [];
+        
+        function loadReviewData(imageUrl, ocrData) {
+            document.getElementById('originalImage').src = imageUrl;
+            extractedData = ocrData;
+            
+            displayTextBlocks();
+            updateStats();
+        }
+        
+        function displayTextBlocks() {
+            const container = document.getElementById('textBlocks');
+            container.innerHTML = '';
+            
+            extractedData.forEach((block, index) => {
+                const div = document.createElement('div');
+                div.className = `text-block ${block.type}`;
+                div.innerHTML = `
+                    <div class="confidence">신뢰도: ${block.conf}% | 위치: (${block.x}, ${block.y}) | 타입: ${block.type}</div>
+                    <textarea id="text_${index}" style="width: 100%; height: 60px; margin: 5px 0;">${block.text}</textarea>
+                    <button class="edit-btn" onclick="editBlock(${index})">✏️ 수정</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        function updateStats() {
+            const total = extractedData.length;
+            const tableCount = extractedData.filter(b => b.type === 'table').length;
+            const textCount = extractedData.filter(b => b.type === 'text').length;
+            const avgConf = total > 0 ? Math.round(extractedData.reduce((sum, b) => sum + b.conf, 0) / total) : 0;
+            
+            document.getElementById('totalBlocks').textContent = total;
+            document.getElementById('tableBlocks').textContent = tableCount;
+            document.getElementById('textBlocks').textContent = textCount;
+            document.getElementById('avgConfidence').textContent = avgConf;
+        }
+        
+        function editBlock(index) {
+            const textarea = document.getElementById(`text_${index}`);
+            extractedData[index].text = textarea.value;
+            alert('텍스트가 수정되었습니다.');
+        }
+        
+        function saveReview() {
+            // 수정된 데이터 수집
+            extractedData.forEach((block, index) => {
+                const textarea = document.getElementById(`text_${index}`);
+                block.text = textarea.value;
+            });
+            
+            // 서버로 전송
+            fetch('/save_review', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ reviewedData: extractedData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('✅ 검수가 완료되었습니다!');
+                    window.close();
+                } else {
+                    alert('❌ 저장 중 오류가 발생했습니다.');
+                }
+            });
+        }
+        
+        // 페이지 로드 시 데이터 로드 (실제로는 서버에서 전달)
+        window.onload = function() {
+            // 예시 데이터 (실제로는 서버에서 전달받음)
+            const sampleData = [
+                { text: '안전확인신고서', x: 100, y: 50, w: 200, h: 30, conf: 95, type: 'text' },
+                { text: 'KATRI', x: 150, y: 100, w: 80, h: 25, conf: 88, type: 'table' },
+                { text: '신고번호: CB064B031-5001', x: 50, y: 150, w: 300, h: 20, conf: 92, type: 'table' }
+            ];
+            loadReviewData('/static/sample_image.png', sampleData);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!-- 새 템플릿 파일 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>실패 문서 검수</title>
+    <meta charset="utf-8">
+    <style>
+        .failed-item { border: 1px solid #ddd; margin: 10px; padding: 15px; }
+        .success { background-color: #d4edda; }
+        .failed { background-color: #f8d7da; }
+        .manual-input { margin: 10px 0; }
+        .manual-input input { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 실패 문서 수기 검수</h1>
+    
+    {% for item in failed_items %}
+    <div class="failed-item failed">
+        <h3>📄 {{ item.filename }}</h3>
+        <p><strong>변환 방식:</strong> {{ item.conversion_method }}</p>
+        <p><strong>실패 시간:</strong> {{ item.timestamp }}</p>
+        
+        <div class="manual-input">
+            <h4>수기 입력:</h4>
+            <form method="POST" action="/save_manual_review">
+                <input type="hidden" name="document_id" value="{{ loop.index0 }}">
+                <input type="text" name="kc_number" placeholder="KC 번호" value="{{ item.extracted_numbers.get('kc_number', '') }}">
+                <input type="text" name="registration_number" placeholder="등록번호" value="{{ item.extracted_numbers.get('registration_number', '') }}">
+                <input type="text" name="document_number" placeholder="문서번호" value="{{ item.extracted_numbers.get('document_number', '') }}">
+                <input type="text" name="business_number" placeholder="사업자번호" value="{{ item.extracted_numbers.get('business_number', '') }}">
+                <button type="submit">💾 저장</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
