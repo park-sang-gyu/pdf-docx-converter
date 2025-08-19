@@ -1,0 +1,13 @@
+# Replit 구성 파일
+run = "python main.py"
+entrypoint = "main.py"
+
+[nix]
+channel = "stable-22_11"
+
+[deployment]
+run = ["sh", "-c", "python main.py"]
+
+[[ports]]
+localPort = 8080
+externalPort = 80

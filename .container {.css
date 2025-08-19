@@ -1,0 +1,51 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.file-input {
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+}
+
+.quality-section {
+    margin: 20px 0;
+}
+
+.quality-options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button-group {
+    margin: 20px 0;
+}
+
+.convert-btn, .reset-btn {
+    padding: 12px 24px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.convert-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.reset-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.convert-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

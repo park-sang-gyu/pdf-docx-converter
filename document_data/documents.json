@@ -1,0 +1,132 @@
+[
+  {
+    "timestamp": "2025-08-14T23:04:33.904276",
+    "pdf_path": "uploads\\20250306175509319765.pdf",
+    "filename": "20250306175509319765.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 706266,
+    "processing_time": 1.1065170764923096
+  },
+  {
+    "timestamp": "2025-08-14T23:05:52.344767",
+    "pdf_path": "uploads\\1.pdf",
+    "filename": "1.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 1444322,
+    "processing_time": 2.828946113586426
+  },
+  {
+    "timestamp": "2025-08-14T23:07:29.174456",
+    "pdf_path": "uploads\\02-.pdf",
+    "filename": "02-.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 1379250,
+    "processing_time": 6.904274225234985
+  },
+  {
+    "timestamp": "2025-08-14T23:07:53.835679",
+    "pdf_path": "uploads\\-7_.pdf",
+    "filename": "-7_.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 139222,
+    "processing_time": 0.6326131820678711
+  },
+  {
+    "timestamp": "2025-08-14T23:08:33.770889",
+    "pdf_path": "uploads\\1.pdf",
+    "filename": "1.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 12368691,
+    "processing_time": 13.819381713867188
+  },
+  {
+    "timestamp": "2025-08-14T23:08:59.287875",
+    "pdf_path": "uploads\\CB064B031-5001_TYPE_B_kc_5.pdf",
+    "filename": "CB064B031-5001_TYPE_B_kc_5.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 18894,
+    "processing_time": 0.44184327125549316
+  },
+  {
+    "timestamp": "2025-08-14T23:09:41.400548",
+    "pdf_path": "uploads\\-.pdf",
+    "filename": "-.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 96547,
+    "processing_time": 0.3647639751434326
+  },
+  {
+    "timestamp": "2025-08-14T23:09:57.733446",
+    "pdf_path": "uploads\\2024_.pdf",
+    "filename": "2024_.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 55800,
+    "processing_time": 0.857306718826294
+  },
+  {
+    "timestamp": "2025-08-14T23:10:14.224501",
+    "pdf_path": "uploads\\CB064B031-5001_TYPE_B_kc.pdf",
+    "filename": "CB064B031-5001_TYPE_B_kc.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 1226734,
+    "processing_time": 1.300621747970581
+  },
+  {
+    "timestamp": "2025-08-14T23:11:53.751086",
+    "pdf_path": "uploads\\falskdjflajsdklfajskldfja.pdf",
+    "filename": "falskdjflajsdklfajskldfja.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 68097,
+    "processing_time": 0.47696614265441895
+  },
+  {
+    "timestamp": "2025-08-18T09:12:11.434484",
+    "pdf_path": "uploads\\falskdjflajsdklfajskldfja.pdf",
+    "filename": "falskdjflajsdklfajskldfja.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 68097,
+    "processing_time": 1.5823171138763428
+  },
+  {
+    "timestamp": "2025-08-18T09:16:55.337012",
+    "pdf_path": "uploads\\falskdjflajsdklfajskldfja.pdf",
+    "filename": "falskdjflajsdklfajskldfja.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 68097,
+    "processing_time": 0.7276482582092285
+  },
+  {
+    "timestamp": "2025-08-18T09:17:17.709587",
+    "pdf_path": "uploads\\CB064B031-5001_TYPE_B_kc.pdf",
+    "filename": "CB064B031-5001_TYPE_B_kc.pdf",
+    "conversion_method": "이미지 기반",
+    "success": true,
+    "extracted_numbers": {},
+    "file_size": 1226734,
+    "processing_time": 1.2088956832885742
+  }
+]
